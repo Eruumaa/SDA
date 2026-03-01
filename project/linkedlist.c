@@ -36,11 +36,11 @@ int addList(List * lptr, char *kataBaru) {
     return 1;
 }
 
-//
+// Fungsi displayList untuk mencetak semua kata yang tersimpan dalam linked list
 void displayList(List * lptr, char huruf) {
     int count = 0;
     NodePtr current = lptr->head;
-    
+    // Kondisi untuk pengecekan jika ada list yang kosong
     if (current == NULL) {
         printf("Kata dengan huruf awal %c tidak ditemukan\n", huruf);
         return;
@@ -48,29 +48,34 @@ void displayList(List * lptr, char huruf) {
     printf("\n");
     while (current != NULL && count < 25) {
         printf("%s -> ", current->kata);
+        // Perintah untuk memindahkan penunjuk  ke alamat node selanjutnya
         current = current->next;
         count++;
     }
     printf("null\n");
 }
 
-// 
+// Fungsi freeList yang berguna untuk membersihkan memori
 void freeList(List * lptr) {
     NodePtr next=lptr->head;
     NodePtr current=next;
     while (current != NULL) {
         next = current->next;
+        // Penghapusan pertama yaitu menghapus isi dalam node
         free(current->kata);
+        // Penghapusan kedua yaitu menghapus node
         free(current);
+        // Pindah ke node selanjutnya
         current = next;
     }
-    // Mereset metadata list
+    // Mereset metadata pada list
     lptr->head = NULL;
     lptr->size = 0;
 }
 
-// 
+// Fungsi deleteNode untuk melepas node dan menyambungkan kembali ke sisa node lainnya
 int deleteNode(List * lptr, char *target) {
+    // Kondisi untuk mengecek jika ada list yang kosong
     if (lptr->head == NULL) {
         printf("Kata '%s' tidak ditemukan\n", target);
         return 0;
@@ -78,21 +83,27 @@ int deleteNode(List * lptr, char *target) {
     NodePtr current = lptr->head;
     NodePtr previous = NULL;
 
+    // Looping untuk mencari dalam list selama belum sampai NULL
     while (current != NULL) {
+        // Kondisi untuk mencocokkan kata di node
         if (strcmp(current->kata, target) == 0) {
+            // Kondisi untuk menghapus node pertama jika kata yang dihapus di posisi paling depan
             if (previous == NULL) {
                 lptr->head = current->next;
             }
+            // Kondisi untuk menghapus node di tengah atau paling belakang
             else {
                 previous->next = current->next;
             }
-            free(current->kata);
-            free(current);
-
+            // Dilakukannya memory cleanup agar tidak terjadi memory leak
+            free(current->kata); 
+            free(current); 
+            // Karena satu kata sudah terbuang, jumlah total kata dalam list dikurang satu
             lptr->size--;
             printf("Kata '%s' berhasil dihapus\n", target);
             return 1;
         }
+        // Menggeser kedua pointer maju satu langkah untuk memeriksa node selanjutnya
         previous = current;
         current = current->next;
     }

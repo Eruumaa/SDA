@@ -24,11 +24,11 @@ int main(void) {
     while (fgets(buffer, sizeof(buffer), fp)) {
         // Membersihkan enter 
         buffer[strcspn(buffer, "\r\n")] = 0;
-        // Memastikan program benar-benar punya karakter di dalamnya
+        // Kondisi untuk memastikan program benar-benar punya karakter di dalamnya
         if (strlen(buffer) > 0) {
             // Menghitung aalamt index 
             int index = tolower(buffer[0]) - 'a';
-            // Menyambungkan node baru ke linked list 
+            // Kondisi untuk menyambungkan node baru ke linked list 
             if (index >= 0 && index < 26) {
                 addList(&LL[index], buffer);
             }
@@ -55,14 +55,14 @@ int main(void) {
             printf("Huruf: ");
             scanf(" %c", &huruf);
             int idx = tolower(huruf) - 'a';
-            // Opsi ke-1 menampilkan list yang ada dari data "dbterms.txt"
+            // Kondisi untuk opsi ke-1 menampilkan list yang ada dari data "dbterms.txt"
             if (idx >= 0 && idx < 26) displayList(&LL[idx], huruf);
         } 
         else if (pick == 2) {
             printf("Kata yang ingin dihapus: ");
             scanf("%s", kata);
             int idx = tolower(kata[0]) - 'a';
-            // Opsi ke-2 men-delete kata yang diinginkan
+            // Kondisi untuk opsi ke-2 men-delete kata yang diinginkan
             if (idx >= 0 && idx < 26) {
                 deleteNode(&LL[idx], kata);
             } 
@@ -73,7 +73,7 @@ int main(void) {
     // Opsi ke-3 keluar dari program
     } while (pick != 3);
     
-    // Membersihkan program agar tidak terjadi Memory Leak
+    // Looping untuk membersihkan program agar tidak terjadi Memory Leak
     for (i = 0; i < 26; i++) {
         freeList(&LL[i]);
     }
