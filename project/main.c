@@ -3,11 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <mcheck.h>
 
 int main(void) {
-    mtrace();
-
     int i, pick;
     char huruf;
     char kata[25];
@@ -79,7 +76,5 @@ int main(void) {
     }
 
     printf("Program selesai\n");
-
-    muntrace();
     return EXIT_SUCCESS;
 }
