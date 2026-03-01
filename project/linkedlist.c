@@ -14,10 +14,10 @@ int addList(List * lptr, char *kataBaru) {
         printf("Error dalam membuat alokasi memori\n");
         return 0;
     }
-    // malloc kataBaru
+    // function malloc kataBaru
     new->kata = malloc(strlen(kataBaru)+ 1);
     if (new->kata == NULL) {
-        // Function free untuk mengalokasi memori secara dinamis
+        // Free alokasi memori secara dinamis
         free(new);
         return 0;
     }
