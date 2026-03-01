@@ -23,6 +23,3 @@ void freeList(List * lptr);
 int addList(List *lptr, char *kataBaru);
 // Prototype fungsi untuk penghapusan kata tertentu dari list
 int deleteNode(List * lptr, char *target);
-
-
-
