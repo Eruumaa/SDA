@@ -3,31 +3,40 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Fungsi initList yang membuat list baru
 void initList(List * lptr) {
+    // Mereset head dan size untuk menetapkan titik awal 
     lptr->head = NULL;
     lptr->size = 0;
 }
+
+// Fungsi addList yang memasukkan kata baru ke dalam linked list
 int addList(List * lptr, char *kataBaru) {
     NodePtr new;
+    // Membuat wadah node untuk di isi pointer ke kata dan ke node selanjutnya
     new = malloc(sizeof(Node));
     if (new == NULL) {
         printf("Error dalam membuat alokasi memori\n");
         return 0;
     }
-    // function malloc kataBaru
+    // Membuat ruang memori untuk menyimpan kata
     new->kata = malloc(strlen(kataBaru)+ 1);
     if (new->kata == NULL) {
-        // Free alokasi memori secara dinamis
+        // Mengalokasi memori untuk mencegah Memory Leak
         free(new);
         return 0;
     }
-    // Copy kataBaru
+    // Menyalin data yang sudah ada di 'kataBaru' ke dalam 'new->kata'
     strcpy(new->kata, kataBaru);
+    // Menghubungkan node sehingga head berpindah ke node baru
     new->next = lptr->head;
-    lptr->head = new;   
+    lptr->head = new;
+    // Menghitung otomatis jumlah elemen yang ada dalam linked list
     lptr->size++;
     return 1;
 }
+
+//
 void displayList(List * lptr, char huruf) {
     int count = 0;
     NodePtr current = lptr->head;
@@ -44,6 +53,8 @@ void displayList(List * lptr, char huruf) {
     }
     printf("null\n");
 }
+
+// 
 void freeList(List * lptr) {
     NodePtr next=lptr->head;
     NodePtr current=next;
@@ -58,6 +69,7 @@ void freeList(List * lptr) {
     lptr->size = 0;
 }
 
+// 
 int deleteNode(List * lptr, char *target) {
     if (lptr->head == NULL) {
         printf("Kata '%s' tidak ditemukan\n", target);
