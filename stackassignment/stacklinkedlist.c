@@ -4,19 +4,19 @@
 #include <ctype.h>
 
 // Fungsi initStack untuk menyiapkan stack baru
-int initStackLL(Stack * ps) {
+int initStackLL(StackLL * ps) {
     ps->top = NULL;
     ps->size = 0;
     return 1;
 }
 
 // Fungsi isEmpty untuk mengecek stack kosong atau tidak
-int isEmptyLL(Stack * ps) {
+int isEmptyLL(StackLL * ps) {
     return ps->top == NULL;
 }
 
 // Fungsi push untuk menambah elemen stack ke paling atas top
-int pushLL(Stack * ps, char elemen) {
+int pushLL(StackLL * ps, char elemen) {
     StackNodePtr newNode;
     newNode = malloc(sizeof(StackNode));
     if (newNode == NULL) {
@@ -31,7 +31,7 @@ int pushLL(Stack * ps, char elemen) {
 }
 
 // Fungsi pop untuk mengambil dan menghapus elemen paling atas top stack
-int popLL(Stack *ps) {
+int popLL(StackLL *ps) {
     StackNodePtr temp;
     char item;
     if (ps->top == NULL) {
@@ -48,7 +48,7 @@ int popLL(Stack *ps) {
 }
 
 // Fungsi get untuk membaca nilai dari elemen paling atas stack top tanpa dihapus
-int getLL(Stack * ps) {
+int getLL(StackLL * ps) {
     if (ps->top == NULL) {
         return 0;
     }

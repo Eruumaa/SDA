@@ -9,11 +9,11 @@ typedef struct stacknode {
 typedef struct stack {
     StackNodePtr top;
     unsigned size;
-} Stack;
+} StackLL;
 
 // Fungsi-fungsi standar stack-linkedlist
-int initStackLL(Stack *);
-int isEmptyLL(Stack *);
-int pushLL(Stack *, char);
-int popLL(Stack *);
-int getLL(Stack *);
+int initStackLL(StackLL *);
+int isEmptyLL(StackLL *);
+int pushLL(StackLL *, char);
+int popLL(StackLL *);
+int getLL(StackLL *);

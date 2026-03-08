@@ -4,11 +4,11 @@
 typedef struct  {
     int data[MAX];
     int top;
-} Stack;
+} Stackarr;
 
 // Fungsi-fungsi standar stack-array
-int isEmptyArr(Stack);
-int pushArr(Stack *ps, int);
-int popArr(Stack *);
-int getArr(Stack *);
-int initStackArr(Stack *);
+int isEmptyArr(Stackarr);
+int pushArr(Stackarr *ps, int);
+int popArr(Stackarr *);
+int getArr(Stackarr *);
+int initStackArr(Stackarr *);

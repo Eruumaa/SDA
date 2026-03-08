@@ -4,12 +4,12 @@
 #include <ctype.h>
 
 // Fungsi isEmpty untuk mengecek isi stack jika kosong
-int isEmptyArr(Stack queue){
+int isEmptyArr(Stackarr queue){
     return queue.top == -1;
 }
 
 // Fungsi Push untuk menambah elemen stack
-int pushArr(Stack *ps, int elemen) {
+int pushArr(Stackarr *ps, int elemen) {
     if (ps->top == MAX -1) {
         printf("Stack penuh, gagal menambah %d\n", elemen);
         return 0;
@@ -21,7 +21,7 @@ int pushArr(Stack *ps, int elemen) {
 }
 
 // Fungsi pop untuk menghapus elemen paling atas stack
-int popArr(Stack *ps) {
+int popArr(Stackarr *ps) {
     int nilai;
     if (isEmptyArr(*ps)) {
         printf("Stack kosong\n");
@@ -34,12 +34,12 @@ int popArr(Stack *ps) {
 }
 
 // Fungsi get untuk membaca nilai dari elemen paling atas stack
-int getArr(Stack  *ps) {
+int getArr(Stackarr  *ps) {
     return ps->data[ps->top];
 }
 
 // Fungsi initStack untuk membersihkan stack
-int initStackArr(Stack *ps) {
+int initStackArr(Stackarr *ps) {
     ps->top = -1;
     return 1;
 }

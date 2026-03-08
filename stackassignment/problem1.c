@@ -14,7 +14,7 @@ int isMatch(char open, char close) {
 }
 
 int main(void) {
-    Stack st;
+    Stackarr st;
     char ekspresi[MAX];
 
     printf("Masukkan ekspresi tanda kurung: ");

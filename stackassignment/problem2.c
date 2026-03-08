@@ -20,7 +20,7 @@ int priority(char operator) {
 
 // Fungsi infixTopostfix untuk mengonversi infix ke postfix
 int infixTopostfix(char infix[], char postfix[]) {
-    Stack ps;
+    StackLL ps;
     initStackLL(&ps);
     int i, j = 0;
     char ekspresi;
