@@ -3,14 +3,21 @@
 #include <string.h>
 #include <ctype.h>
 
+// Fungsi priority untuk prioritas operator aritmatika
 int priority(char operator) {
-    if (operator == '^') return 1;
-    if (operator == '*' || operator == '/') return 1;
-    if (operator == '+' || operator == '-') return 1;
-    return 0;
+    int pick = 0;
+    if (operator == '*' || operator == '/') {
+        pick = 2;
+    }
+    else if (operator == '+' || operator == '-') {
+        pick = 1;
+    }
+
+    return pick;
 }
 
-int infixToposfix(char infix[], char postfix[]) {
+// Fungsi infixTopostfix untuk mengonversi infix ke postfix
+int infixTopostfix(char infix[], char postfix[]) {
     Stack ps;
     initStack(&ps);
     int i, j = 0;
@@ -47,10 +54,15 @@ int infixToposfix(char infix[], char postfix[]) {
 }
 
 int main(void) {
-    char infix[] = "(A+B)*C-D/E";
+    char infix[100];
     char postfix[100];
 
-    infixToposfix(infix, postfix);
+    printf("Masukkan ekspresi aritmatika infix: ");
+    fgets(infix, sizeof(infix), stdin);
+    infix[strcspn(infix, "\n")] = 0;
+
+
+    infixTopostfix(infix, postfix);
 
     printf("Infix   : %s\n", infix);
     printf("Postfix : %s\n", postfix);
