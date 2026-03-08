@@ -12,8 +12,8 @@ typedef struct stack {
 } Stack;
 
 // Fungsi-fungsi standar stack-linkedlist
-int initStack(Stack *);
-int isEmpty(Stack *);
-int push(Stack *, char);
-int pop(Stack *);
-int get(Stack *);
+int initStackLL(Stack *);
+int isEmptyLL(Stack *);
+int pushLL(Stack *, char);
+int popLL(Stack *);
+int getLL(Stack *);

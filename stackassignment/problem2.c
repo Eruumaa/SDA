@@ -21,7 +21,7 @@ int priority(char operator) {
 // Fungsi infixTopostfix untuk mengonversi infix ke postfix
 int infixTopostfix(char infix[], char postfix[]) {
     Stack ps;
-    initStack(&ps);
+    initStackLL(&ps);
     int i, j = 0;
     char ekspresi;
 
@@ -35,28 +35,28 @@ int infixTopostfix(char infix[], char postfix[]) {
         }
         // Kondisi kurung terbuka maka akan di push
         else if (ekspresi == '(') {
-            push(&ps, ekspresi);
+            pushLL(&ps, ekspresi);
         }
         // Kondisi kurung tertutup maka akan di pop
         else if (ekspresi == ')') {
-            while (!isEmpty(&ps) && get(&ps) != '(') {
-                postfix[j++] = pop(&ps);
+            while (!isEmptyLL(&ps) && getLL(&ps) != '(') {
+                postfix[j++] = popLL(&ps);
             }
             // Menghapus kurung tutup tanpa di print
-            pop(&ps);
+            popLL(&ps);
         }
         else {
             // Memindahkan operator dari stack ke postfix jika prioritasnya lebih tinggi atau sama
-            while (!isEmpty(&ps) && priority(get(&ps)) >= priority(ekspresi)) {
-                postfix[j++] = pop(&ps);
+            while (!isEmptyLL(&ps) && priority(getLL(&ps)) >= priority(ekspresi)) {
+                postfix[j++] = popLL(&ps);
             }
             // Mem-push operator baru ke dalam stack
-            push(&ps, ekspresi);
+            pushLL(&ps, ekspresi);
         }
     }
     // Memindahkan semua sisa operator yang masih ada di dalam stack ke hasil postfix
-    while (!isEmpty(&ps)) {
-        postfix[j++] = pop(&ps);
+    while (!isEmptyLL(&ps)) {
+        postfix[j++] = popLL(&ps);
     }
     // Hasil postfix;
     postfix[j] = '\0';

@@ -7,8 +7,8 @@ typedef struct  {
 } Stack;
 
 // Fungsi-fungsi standar stack-array
-int isEmpty(Stack);
-int push(Stack *ps, int);
-int pop(Stack *);
-int get(Stack *);
-int initStack(Stack *);
+int isEmptyArr(Stack);
+int pushArr(Stack *ps, int);
+int popArr(Stack *);
+int getArr(Stack *);
+int initStackArr(Stack *);

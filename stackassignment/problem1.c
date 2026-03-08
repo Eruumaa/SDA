@@ -19,7 +19,7 @@ int main(void) {
 
     printf("Masukkan ekspresi tanda kurung: ");
     fgets(ekspresi, sizeof(ekspresi), stdin);
-    printf("\n");
+    ekspresi[strcspn(ekspresi, "\n")] = 0;
 
     int panjang = strlen(ekspresi);
     // Kondisi untuk input yang tidak boleh kosong
@@ -27,20 +27,20 @@ int main(void) {
         printf("Input tidak boleh kosong\n");
         return 0;
     }
-    initStack(&st);
+    initStackArr(&st);
 
     // Perulangan untuk mengecek tiap ekspresi open-close tanda kurung 
     for (int i = 0; i < panjang; i++) {
         if (ekspresi[i] == '(' || ekspresi[i] == '{' || ekspresi[i] == '[' ) {
-            push(&st, ekspresi[i]);
+            pushArr(&st, ekspresi[i]);
         }
         else if (ekspresi[i] == ')' || ekspresi[i] == '}' || ekspresi[i] == ']') {
             // Kondisi jika tanda kurung tidak lengkap pada bagian close
-            if (isEmpty(st)) {
-                printf("Ekspresi salah, kurung tidak seimbang\n");
+            if (isEmptyArr(st)) {
+                printf("Ekspresi salah, tanda kurung tutup tidak ada\n");
                 return 0;
             }
-            char open = pop(&st);
+            char open = popArr(&st);
 
             // Kondisi jika ekspresi tanda kurung berlebih 
             if (!isMatch(open, ekspresi[i])) {
@@ -50,7 +50,7 @@ int main(void) {
         }
     }
     // Validasi akhir eksrepsi seimbang atau tidak
-    if (isEmpty(st)) {
+    if (isEmptyArr(st)) {
         printf("Ekspresi benar, tanda kurung seimbang\n");
     } else {
         printf("Ekspresi salah, tanda kurung tidak seimbang\n");
