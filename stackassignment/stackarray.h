@@ -6,7 +6,7 @@ typedef struct  {
     int top;
 } Stack;
 
-// Fungsi-fungsi standar stack
+// Fungsi-fungsi standar stack-array
 int isEmpty(Stack);
 int push(Stack *ps, int);
 int pop(Stack *);
