@@ -12,6 +12,6 @@ typedef struct stack {
 
 int initStack(Stack *);
 int isEmpty(Stack *);
-int push(Stack *);
+int push(Stack *, char);
 int pop(Stack *);
 int get(Stack *);
