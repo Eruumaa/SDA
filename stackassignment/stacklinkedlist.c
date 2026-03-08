@@ -3,24 +3,25 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-// Fungsi initStack untuk membersihkan stack
+// Fungsi initStack untuk menyiapkan stack baru
 int initStack (Stack * ps) {
     ps->top = NULL;
     ps->size = 0;
     return 1;
 }
 
-// Fungsi isEmpty untuk membersihkan stack
+// Fungsi isEmpty untuk mengecek stack kosong atau tidak
 int isEmpty(Stack * ps) {
     return ps->top == NULL;
 }
 
-// Fungsi push untuk menambah elemen stack
+// Fungsi push untuk menambah elemen stack ke paling atas top
 int push (Stack * ps, char elemen) {
     StackNodePtr newNode;
     newNode = malloc(sizeof(StackNode));
     if (newNode == NULL) {
-        return 0;
+        // Alokasi memori gagal
+        return 0; 
     }
     newNode->elemen = elemen;
     newNode->next = ps->top;
@@ -29,22 +30,24 @@ int push (Stack * ps, char elemen) {
     return 1;
 }
 
-// Fungsi pop untuk menghapus elemen paling atas stack
+// Fungsi pop untuk mengambil dan menghapus elemen paling atas top stack
 int pop (Stack *ps) {
     StackNodePtr temp;
     char item;
     if (ps->top == NULL) {
+        // Stack kosong
         return 0;
     }
     temp = ps->top;
     ps->top = ps->top->next;
     item = temp->elemen;
+    // Menghapus node dari memori
     free(temp);
     ps->size--;
     return item;
 }
 
-// Fungsi get untuk membaca nilai dari elemen paling atas stack
+// Fungsi get untuk membaca nilai dari elemen paling atas stack top tanpa dihapus
 int get (Stack * ps) {
     if (ps->top == NULL) {
         return 0;

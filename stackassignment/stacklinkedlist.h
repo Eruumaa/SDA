@@ -1,3 +1,4 @@
+// Definisi alias struct node dan stack
 typedef struct stacknode * StackNodePtr;
 typedef struct stacknode {
     char elemen;
@@ -10,6 +11,7 @@ typedef struct stack {
     unsigned size;
 } Stack;
 
+// Fungsi-fungsi standar stack-linkedlist
 int initStack(Stack *);
 int isEmpty(Stack *);
 int push(Stack *, char);
