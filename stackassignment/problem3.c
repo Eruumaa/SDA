@@ -2,6 +2,7 @@
 #include "stacklinkedlist.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
 
@@ -25,20 +26,26 @@ int operation(int a, int b, char operation) {
 
 // Fungsi untuk menggunakan stack Array dan Linkedlist
 int evaluation(char postfix[], int choice) {
-    int i, op1, op2;
+    char temp[100];
+    strcpy(temp, postfix);
+    char *token = strtok(temp, " ");
+    int op1, op2;
 
     // Kondisi pertama implementasi stack Array
     if (choice == 1) {
         Stackarr ps;
         initStackArr(&ps);
-        // Looping untuk memproses setiap karakter dalam string postfix dengan implementasi stack linkedlist
-        for (i = 0; postfix[i] != '\0'; i++) {
-            if (isdigit(postfix[i])) pushArr(&ps, postfix[i] - '0');
-            else if (strchr("+-*/", postfix[i])) {
+        // Looping untuk memproses setiap karakter dalam string postfix dengan implementasi stack array
+        while (token != NULL) {
+            if (isdigit(token[0])) {
+                pushArr(&ps, atoi(token));
+            }
+            else if (strchr("+-*/", token[0])) {
                 op2 = popArr(&ps); 
                 op1 = popArr(&ps);
-                pushArr(&ps, operation(op1, op2, postfix[i]));
+                pushArr(&ps, operation(op1, op2, token[0]));
             }
+            token = strtok(NULL, " ");
         }
         return popArr(&ps);
     }
@@ -47,13 +54,16 @@ int evaluation(char postfix[], int choice) {
         StackLL ps;
         initStackLL(&ps);
         // Looping untuk memproses setiap karakter dalam string postfix dengan implementasi stack linkedlist
-        for (int i = 0; postfix[i] != '\0'; i++) {
-            if (isdigit(postfix[i])) pushLL(&ps, postfix[i] - '0');
-            else if (strchr("+-*/", postfix[i])) {
+        while (token != NULL) {
+            if (isdigit(token[0])) {
+                pushLL(&ps, atoi(token));
+            }
+            else if (strchr("+-*/", token[0])) {
                 op2 = popLL(&ps);
                 op1 = popLL(&ps);
-                pushLL(&ps, operation(op1, op2, postfix[i]));
+                pushLL(&ps, operation(op1, op2, token[0]));
             }
+            token = strtok(NULL, " ");
         }
         return popLL(&ps);
     }
