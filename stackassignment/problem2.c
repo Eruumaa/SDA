@@ -29,6 +29,9 @@ int infixTopostfix(char infix[], char postfix[]) {
     for (i = 0; infix[i] != '\0'; i++) {
         ekspresi = infix[i];
 
+        // Mengabaikan spasi
+        if (isspace(ekspresi)) continue;
+
         // Kondisi untuk mengecek karakter operan atau angka yang sedang dibaca
         if (isalnum(ekspresi)) {
             postfix[j++] = ekspresi;
