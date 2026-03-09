@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <time.h>
 
+// Fungsi operation untuk menentukan tiap eksekusi operator numerik
 int operation(int a, int b, char operation) {
     switch (operation) {
         case '+': 
@@ -21,13 +22,16 @@ int operation(int a, int b, char operation) {
     }
 }
 
+
+// Fungsi untuk menggunakan stack Array dan Linkedlist
 int evaluation(char postfix[], int choice) {
     int i, op1, op2;
 
+    // Kondisi pertama implementasi stack Array
     if (choice == 1) {
         Stackarr ps;
         initStackArr(&ps);
-
+        // Looping untuk memproses setiap karakter dalam string postfix dengan implementasi stack linkedlist
         for (i = 0; postfix[i] != '\0'; i++) {
             if (isdigit(postfix[i])) pushArr(&ps, postfix[i] - '0');
             else if (strchr("+-*/", postfix[i])) {
@@ -38,10 +42,11 @@ int evaluation(char postfix[], int choice) {
         }
         return popArr(&ps);
     }
+    // Kondisi kedua implementasi stack linkedlist
     else {
         StackLL ps;
         initStackLL(&ps);
-
+        // Looping untuk memproses setiap karakter dalam string postfix dengan implementasi stack linkedlist
         for (int i = 0; postfix[i] != '\0'; i++) {
             if (isdigit(postfix[i])) pushLL(&ps, postfix[i] - '0');
             else if (strchr("+-*/", postfix[i])) {
@@ -71,6 +76,7 @@ int main(void) {
     printf("2. LinkedList\n");
     scanf("%d", &choose);
 
+    // Pengukuran durasi untuk membandingkan speed dari implementasi stack array dengan stack linkedlist
     start = clock();
     result = evaluation(postfix, choose);
     end = clock();
