@@ -41,7 +41,7 @@ int popLL(StackLL *ps) {
     temp = ps->top;
     ps->top = ps->top->next;
     item = temp->elemen;
-    // Menghapus node dari memori
+    // Menghapus node dari memori setiap data diambil
     free(temp);
     ps->size--;
     return item;
