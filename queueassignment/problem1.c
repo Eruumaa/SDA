@@ -30,7 +30,7 @@ void printerArray () {
                     printf("Antrian kosong, tidak ada dokumen\n");
                 } else {
                     progress = dequeueArr(&printerQueue);
-                    printf("Mencetak dokumen ID %d....", progress);
+                    printf("Mencetak dokumen ID %d....\n", progress);
                 }
                 break;
             case 3:
@@ -78,7 +78,7 @@ void printerLinkedList () {
                 if (isEmptyLL(&printerQueue)) {
                     printf("Antrian kosong, tidak ada dokumen\n");
                 } else {
-                    progress = dequeueArr(&printerQueue);
+                    progress = dequeueLL(&printerQueue);
                     printf("Mencetak dokumen ID %d....", progress);
                 }
                 break;
@@ -94,6 +94,7 @@ void printerLinkedList () {
                 break;
             case 5:
                 printf("Keluar\n");
+                freeQueueLL(&printerQueue);
                 break;
             default:
                 printf("Pilihan tidak ada\n");
@@ -105,7 +106,7 @@ int main (void) {
     int implementasi;
 
     do {
-        printf(" ========= IMPLEMENTASI QUEUE PRINTER =========");
+        printf(" ========= IMPLEMENTASI QUEUE PRINTER =========\n");
         printf("1. Implementasi menggunakan Array\n");
         printf("2. Implementasi menggunakan Linked List\n");
         printf("3. Keluar\n");
