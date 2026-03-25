@@ -18,6 +18,8 @@ void printerArray () {
         printf("5. Kembali ke Menu Utama\n");
         printf("Pilih: ");
         scanf("%d", &choice);
+
+        printf("\n");
         
         switch (choice) {
             case 1:
@@ -67,6 +69,8 @@ void printerLinkedList () {
         printf("5. Kembali ke Menu Utama\n");
         printf("Pilih: ");
         scanf("%d", &choice);
+
+        printf("\n");
         
         switch (choice) {
             case 1:
@@ -79,7 +83,7 @@ void printerLinkedList () {
                     printf("Antrian kosong, tidak ada dokumen\n");
                 } else {
                     progress = dequeueLL(&printerQueue);
-                    printf("Mencetak dokumen ID %d....", progress);
+                    printf("Mencetak dokumen ID %d ", progress);
                 }
                 break;
             case 3:
@@ -106,11 +110,14 @@ int main (void) {
     int implementasi;
 
     do {
-        printf(" ========= IMPLEMENTASI QUEUE PRINTER =========\n");
+        printf("\n========= IMPLEMENTASI QUEUE PRINTER =========\n");
         printf("1. Implementasi menggunakan Array\n");
         printf("2. Implementasi menggunakan Linked List\n");
         printf("3. Keluar\n");
+        printf("Pilih: ");
         scanf("%d", &implementasi);
+
+        printf("\n");
         
         if (implementasi == 1) {
             printerArray();
