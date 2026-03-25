@@ -15,13 +15,13 @@ int isFullArr(QueueArr *queue) {
     return (queue->count == MAX);
 }
 
-void enqueueArr(QueueArr *queue, int value) {
+void enqueueArr(QueueArr *queue, int data) {
     if (isFullArr(queue)) {
         printf("Queue penuh\n");
         return;
     }
     queue->rear = (queue->rear + 1) % MAX;
-    queue->data[queue->rear] = value;
+    queue->data[queue->rear] = data;
     queue->count++;
 }
 
