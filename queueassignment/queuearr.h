@@ -1,12 +1,17 @@
-#define QUEUE 100
+#define MAX 100
 
 typedef struct queue {
-    int id[QUEUE];
-    int first;
-    int last;
+    int data[MAX];
+    int front;
+    int rear;
     int count;
-} Queue;
+} QueueArr;
 
-typedef struct {
-    
-};
+void initQueueArr (QueueArr *queue);
+void enqueueArr(QueueArr *queue, int value);
+void displayArr(QueueArr *queue);
+int isEmptyArr(QueueArr *queue);
+int isFullArr(QueueArr *queue);
+int dequeueArr(QueueArr *queue);
+int peekArr(QueueArr *queue);
+
