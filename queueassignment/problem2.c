@@ -9,7 +9,7 @@ void bankArray () {
     initQueueArr(&jalur2);
 
     int choice, progress, way;
-    int idNasabah = 101;
+    int idNasabah = 1;
 
     do {
         printf("\n================ ANTRIAN BANK (ARRAY) ================\n");
