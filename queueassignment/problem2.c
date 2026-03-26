@@ -3,6 +3,7 @@
 #include "queuearr.h"
 #include "queueLinklist.h"
 
+// Fungsi implementasi Queue Nasabah Bank menggunakan Array
 void bankArray () {
     QueueArr jalur1, jalur2;
     initQueueArr(&jalur1);
@@ -86,6 +87,7 @@ void bankArray () {
     } while (choice != 6);
 }
 
+// Fungsi implementasi Queue Nasabah Bank menggunakan Linked List
 void bankLinkedList () {
     QueueLL jalur1, jalur2;
     initQueueLL(&jalur1);
@@ -169,6 +171,7 @@ void bankLinkedList () {
     } while (choice != 6);
 }
 
+// Fungsi main untuk menu pemilihan implementasi Queue Nasabah Bank
 int main(void) {
     int implementasi;
 

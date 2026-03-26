@@ -2,16 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Fungsi inisialisasi Queue menggunakan implementasi Linked list
 void initQueueLL (QueueLL *queue) {
     queue->front = NULL;
     queue->rear = NULL;
     queue->size = 0;
 }
 
+// Fungsi mengecek elemen queue kosong 
 int isEmptyLL (QueueLL *queue) {
     return (queue->front == NULL);
 }
 
+// Fungsi menambahkan node baru ke bagian belakang queue
 void enqueueLL (QueueLL *queue, int data) {
     QueueNodePtr newNode = (QueueNodePtr)malloc(sizeof(QueueNode));
 
@@ -32,6 +35,7 @@ void enqueueLL (QueueLL *queue, int data) {
     queue->size++;
 }
 
+// Fungsi menghapus node paling depan queue dan mengambil datanya
 int dequeueLL (QueueLL *queue) {
     if (isEmptyLL(queue)) {
         return -1;
@@ -51,6 +55,7 @@ int dequeueLL (QueueLL *queue) {
     return dequeueData;
 }
 
+// Fungsi melihat data elemen pada queue
 int peekLL (QueueLL *queue) {
     if (isEmptyLL(queue)) {
         return -1;
@@ -58,6 +63,7 @@ int peekLL (QueueLL *queue) {
     return queue->front->data;
 }
 
+// Fungsi mencetak seluruh data queue 
 void displayLL (QueueLL *queue) {
     if (isEmptyLL(queue)) {
         printf("Queue Kosong\n");
@@ -73,6 +79,7 @@ void displayLL (QueueLL *queue) {
     printf("\n");
 }
 
+// Fungsi untuk membersihkan sisa memori di akhir program
 void freeQueueLL (QueueLL *queue) {
     while (!isEmptyLL(queue)) {
         dequeueLL(queue);

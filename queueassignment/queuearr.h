@@ -1,5 +1,6 @@
 #define MAX 100
 
+// Struct Queue menggunakan implementasi Array
 typedef struct queue {
     int data[MAX];
     int front;
@@ -7,6 +8,8 @@ typedef struct queue {
     int count;
 } QueueArr;
 
+
+// Fungsi-fungsi yang digunakan
 void initQueueArr (QueueArr *queue);
 void enqueueArr (QueueArr *queue, int data);
 void displayArr (QueueArr *queue);

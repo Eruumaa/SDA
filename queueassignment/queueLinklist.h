@@ -1,3 +1,4 @@
+// Struct Queue menggunakan implementasi linked list
 typedef struct queuenode * QueueNodePtr;
 typedef struct queuenode {
     int data;
@@ -10,6 +11,7 @@ typedef struct queueLinkedlist {
     unsigned size;
 } QueueLL;
 
+// Fungsi-fungsi yang digunakan
 void initQueueLL (QueueLL *queue);
 void enqueueLL (QueueLL *queue, int data);
 void displayLL (QueueLL *queue);

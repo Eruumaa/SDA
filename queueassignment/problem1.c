@@ -3,6 +3,7 @@
 #include "queuearr.h"
 #include "queueLinklist.h"
 
+// Fungsi implementasi Queue Printer menggunakan Array
 void printerArray () {
     QueueArr printerQueue;
     initQueueArr (&printerQueue);
@@ -54,6 +55,7 @@ void printerArray () {
     } while (choice != 5);
 }
 
+// Fungsi implementasi Queue Printer Menggunakan Linked List
 void printerLinkedList () {
     QueueLL printerQueue;
     initQueueLL (&printerQueue);
@@ -106,6 +108,7 @@ void printerLinkedList () {
     } while (choice != 5);
 }
 
+// Fungsi main untuk menu pemilihan implementasi Queue Printer
 int main (void) {
     int implementasi;
 
