@@ -24,6 +24,7 @@ void enqueueArr(QueueArr *queue, int data) {
         printf("Queue penuh\n");
         return;
     }
+    // Menggunakan modulo max agar index balik ke 0 jika penuh
     queue->rear = (queue->rear + 1) % MAX;
     queue->data[queue->rear] = data;
     queue->count++;
@@ -35,6 +36,7 @@ int dequeueArr(QueueArr *queue) {
         return -1;
     }
     int value = queue->data[queue->front];
+    // Menggeser front ke elemen berikutnya
     queue->front = (queue->front + 1) % MAX;
     queue->count--;
     return value;
@@ -45,6 +47,7 @@ int peekArr(QueueArr *queue) {
     if (isEmptyArr(queue)) {
         return -1;
     }
+    // Melihat nilai di index front
     return queue->data[queue->front];
 }
 

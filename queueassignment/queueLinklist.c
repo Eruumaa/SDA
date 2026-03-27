@@ -16,6 +16,7 @@ int isEmptyLL (QueueLL *queue) {
 
 // Fungsi menambahkan node baru ke bagian belakang queue
 void enqueueLL (QueueLL *queue, int data) {
+    // Memesan alokasi memori untuk pembuatan node baru
     QueueNodePtr newNode = (QueueNodePtr)malloc(sizeof(QueueNode));
 
     if (newNode == NULL) {
@@ -26,10 +27,13 @@ void enqueueLL (QueueLL *queue, int data) {
     newNode->next = NULL;
     
     if (isEmptyLL(queue)) {
+        // Jika queue masih kosong maka node baru berfungsi sebagai front dan rear
         queue->front = newNode;
         queue->rear = newNode;
     } else {
+        // Jika sudah terisi, maka akan di sambungkan rear ke node baru
         queue->rear->next = newNode;
+        // Pindahkan penunjuk rear ke node baru
         queue->rear = newNode;
     }
     queue->count++;
@@ -40,9 +44,11 @@ int dequeueLL (QueueLL *queue) {
     if (isEmptyLL(queue)) {
         return -1;
     }
+    // Menyimpan posisi node front sementara
     QueueNodePtr temp = queue->front;
     int dequeueData = temp->data;
 
+    // Menggeser pointer front ke node di belakangnya
     queue->front = queue->front->next;
 
     if (queue->front == NULL) {
@@ -70,6 +76,7 @@ void displayLL (QueueLL *queue) {
         return;
     }
 
+    // Memulai penelusuran dari node front
     QueueNodePtr current = queue->front;
     printf("Isi queue: ");
     while (current != NULL) {
@@ -81,6 +88,7 @@ void displayLL (QueueLL *queue) {
 
 // Fungsi untuk membersihkan sisa memori di akhir program
 void freeQueueLL (QueueLL *queue) {
+    // Mengeluarkan semua node satu-satu sampai queue kosong
     while (!isEmptyLL(queue)) {
         dequeueLL(queue);
     }
