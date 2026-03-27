@@ -8,7 +8,7 @@ typedef struct queuenode {
 typedef struct queueLinkedlist {
     QueueNodePtr front;
     QueueNodePtr rear;
-    unsigned size;
+    unsigned count;
 } QueueLL;
 
 // Fungsi-fungsi yang digunakan

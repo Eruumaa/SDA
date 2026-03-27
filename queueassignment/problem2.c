@@ -111,7 +111,7 @@ void bankLinkedList () {
 
         switch (choice) {
         case 1:
-            if (jalur1.size <= jalur2.size) {
+            if (jalur1.count <= jalur2.count) {
                 enqueueLL(&jalur1, idNasabah);
                 printf("Nasabah ID %d masuk ke Jalur 1\n", idNasabah);
             } else {
@@ -150,8 +150,8 @@ void bankLinkedList () {
             displayLL(&jalur2);
             break;
         case 4:
-            printf("Jumlah menunggu di Jalur 1: %d orang\n", jalur1.size);
-            printf("Jumlah menunggu di Jalur 2: %d orang\n", jalur2.size);
+            printf("Jumlah menunggu di Jalur 1: %d orang\n", jalur1.count);
+            printf("Jumlah menunggu di Jalur 2: %d orang\n", jalur2.count);
             break;
         case 5:
             printf("Nasabah berikutnya di jalur 1: ");

@@ -6,7 +6,7 @@
 void initQueueLL (QueueLL *queue) {
     queue->front = NULL;
     queue->rear = NULL;
-    queue->size = 0;
+    queue->count = 0;
 }
 
 // Fungsi mengecek elemen queue kosong 
@@ -32,7 +32,7 @@ void enqueueLL (QueueLL *queue, int data) {
         queue->rear->next = newNode;
         queue->rear = newNode;
     }
-    queue->size++;
+    queue->count++;
 }
 
 // Fungsi menghapus node paling depan queue dan mengambil datanya
@@ -50,7 +50,7 @@ int dequeueLL (QueueLL *queue) {
     }
 
     free(temp);
-    queue->size--;
+    queue->count--;
 
     return dequeueData;
 }
