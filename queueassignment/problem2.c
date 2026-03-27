@@ -94,7 +94,7 @@ void bankLinkedList () {
     initQueueLL(&jalur2);
 
     int choice, progress, way;
-    int idNasabah = 101;
+    int idNasabah = 1;
 
     do {
         printf("\n================ ANTRIAN BANK (LINKED LIST) ================\n");
@@ -164,6 +164,8 @@ void bankLinkedList () {
             break;
         case 6:
             printf("Keluar\n");
+            freeQueueLL(&jalur1);
+            freeQueueLL(&jalur2);
             break;
         default:
             printf("Pilihan tidak ada\n");
