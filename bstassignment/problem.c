@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "bst.h"
-#include "linkedlist.h"
+#include "bstLL.h"
+
 
 int main (void) {
 
