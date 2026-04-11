@@ -137,6 +137,25 @@ int insertBst (intbstree * pBST , char * kata, int nomor) {
     return EXIT_SUCCESS;
 }
 
+void searchBst (intbstree * pBst, char huruf) {
+    char hurufAwal = tolower(huruf);
+    instbstNodePtr current = pBst->root;
+
+    while (current != NULL) {
+        if (hurufAwal < current->kata) {
+            current = current->left;
+        }
+        else if (hurufAwal > current->kata) {
+            current = current->right;
+        }
+        else {
+            displayList(&(current->list), hurufAwal);
+            return;
+        }
+    }
+    printf("Kata dengan huruf awal '%c' tidak ditemukan di dalam file.\n", huruf);
+}
+
 void inOrder (intbstree * pBst) {
     if (pBst->root == NULL) return;
     instbstNodePtr stack[100];
