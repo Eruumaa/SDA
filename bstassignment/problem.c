@@ -24,7 +24,7 @@ int main (void) {
     while (fgets(buffer, sizeof(buffer), fp)) {
         // Membersihkan enter 
         buffer[strcspn(buffer, "\r\n")] = 0;
-        // Kondisi untuk memastikan program benar-benar punya karakter di dalamnya
+        // Kondisi untuk memastikan baris yang dibaca tidak kosong sebelum dimasukkan ke BST
         if (strlen(buffer) > 0) {
             insertBst(&tree, buffer, nomorBaris);
         }
@@ -33,6 +33,8 @@ int main (void) {
     fclose(fp);
 
     printf("Pembacaan isi file teks dan pengelompokkan selesai...\n");
+
+    // Menu pilihan program
     do {
         printf("\nMenu Pilihan:\n");
         printf("1) Menampilkan kata-kata sesuai huruf pertama yang diinputkan\n");
@@ -46,18 +48,20 @@ int main (void) {
             pilih = 0;
             continue;
         }
+        // Menu pertama
         if (pilih == 1) {
             printf("Huruf: ");
             scanf(" %c", &huruf);
             
             searchBst(&tree, huruf);
         } 
+        // Menu Kedua
         else if (pilih == 2) {
             inOrder(&tree);
         }
-    // Opsi ke-3 keluar dari program
+    // menu ketiga keluar dari program
     } while (pilih != 3);
-    
+    // Free memori
     freeBst(&tree);
     
     printf("Program selesai\n");
