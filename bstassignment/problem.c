@@ -39,6 +39,47 @@ int main (void) {
     }
     fclose(fp);
 
+    // printf("Pembacaan isi file teks dan pengelompokkan selesai...\n");
+    // do {
+    //     printf("\nMenu Pilihan:\n");
+    //     printf("1) Menampilkan kata-kata sesuai huruf pertama yang ditentukan\n");
+    //     printf("2) Menghapus kata tertentu dalam linked list\n");
+    //     printf("3) Selesai\n");
+    //     printf("\nPilihan anda: ");
+        
+    //     if (scanf("%d", &pick) != 1) {
+    //         printf("\nInput harus berupa angka!\n");
+    //         while (getchar() != '\n');
+    //         pick = 0;
+    //         continue;
+    //     }
+    //     if (pick == 1) {
+    //         printf("Huruf: ");
+    //         scanf(" %c", &huruf);
+    //         int idx = tolower(huruf) - 'a';
+    //         // Kondisi untuk opsi ke-1 menampilkan list yang ada dari data "dbterms.txt"
+    //         if (idx >= 0 && idx < 26) displayList(&LL[idx], huruf);
+    //     } 
+    //     else if (pick == 2) {
+    //         printf("Kata yang ingin dihapus: ");
+    //         scanf("%s", kata);
+    //         int idx = tolower(kata[0]) - 'a';
+    //         // Kondisi untuk opsi ke-2 men-delete kata yang diinginkan
+    //         if (idx >= 0 && idx < 26) {
+    //             deleteNode(&LL[idx], kata);
+    //         } 
+    //         else {
+    //             printf("Kata '%s' tidak ditemukan\n", kata);
+    //         }
+    //     }
+    // // Opsi ke-3 keluar dari program
+    // } while (pick != 3);
+    
+    // // Looping untuk membersihkan program agar tidak terjadi Memory Leak
+    // for (i = 0; i < 26; i++) {
+    //     freeList(&LL[i]);
+    // }
+    // printf("Program selesai\n");
 
     return 0;
 }
