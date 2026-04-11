@@ -33,7 +33,7 @@ int deleteNode (List * lptr, char *);
 
 // Fungsi BST
 int makeIntBst (intbstree * pBst);
-int insertBst (intbstree * pBst , char );
+int insertBst (intbstree * pBst , char *, int);
 void freeBst (intbstree * pBst);
 void inOrder (intbstree * pBst);
 

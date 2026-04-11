@@ -26,7 +26,7 @@ int makeIntBst (intbstree * pBst) {
 
 }
 
-int insertBst (intbstree * pBST , char kata) {
+int insertBst (intbstree * pBST , char * kata, int nomor) {
 
 }
 
