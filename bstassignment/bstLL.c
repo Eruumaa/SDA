@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "bstLL.h"
 
 void initList (List * lptr) {
@@ -7,22 +9,27 @@ void initList (List * lptr) {
     lptr->size = 0;
 }
 
-void displayList (List * lptr, char kata) {
+void displayList (List * lptr, char huruf) {
     int count = 0;
     NodePtr current = lptr->head;
     // Kondisi untuk pengecekan jika ada list yang kosong
     if (current == NULL) {
-        printf("Kata dengan huruf awal %c tidak ditemukan\n", kata);
+        printf("%c -- (0)\n", huruf);
         return;
     }
-    printf("\n");
-    while (current != NULL && count < 25) {
-        printf("%s -> ", current->kata);
+    printf("%c  ", huruf);
+
+    while (current != NULL && count < 5) {
+        printf("%s:%d", current->kata, current->nomor);
         // Perintah untuk memindahkan penunjuk  ke alamat node selanjutnya
         current = current->next;
         count++;
+
+        if (current != NULL && count < 5) {
+            printf (",");
+        }
     }
-    printf("null\n");
+    printf(" (%d)\n", lptr->size);
 }
 
 int addList (List *lptr, char * kata, int nomor) {
@@ -153,7 +160,7 @@ void searchBst (intbstree * pBst, char huruf) {
             return;
         }
     }
-    printf("Kata dengan huruf awal '%c' tidak ditemukan di dalam file.\n", huruf);
+    printf("%c -- (0)\n", hurufAwal);
 }
 
 void inOrder (intbstree * pBst) {
@@ -168,10 +175,18 @@ void inOrder (intbstree * pBst) {
             curr = curr->left;
         }
         curr = stack[top--];
-        printf("%c\n%d\n", curr->kata, curr->list.size);
+        printf("%c   %d\n", curr->kata, curr->list.size);
         curr = curr->right;
     }
-    printf("\n");
+}
+
+void freeNode (instbstNodePtr node) {
+    if (node != NULL) {
+        freeNode (node->left);
+        freeNode (node->right);
+        freeList (&(node->list));
+        free(node);
+    }
 }
 
 void freeBst (intbstree * pBst) {

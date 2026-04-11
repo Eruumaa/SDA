@@ -6,10 +6,9 @@
 
 
 int main (void) {
-    int i, pilih;
+    int pilih;
     int nomorBaris = 1;
     char huruf;
-    char kata[25];
     char buffer[100];
     
     FILE * fp;
@@ -59,10 +58,8 @@ int main (void) {
     // Opsi ke-3 keluar dari program
     } while (pilih != 3);
     
-    // Looping untuk membersihkan program agar tidak terjadi Memory Leak
-    for (i = 0; i < 26; i++) {
-        freeBst(&tree);
-    }
+    freeBst(&tree);
+    
     printf("Program selesai\n");
 
     return 0;

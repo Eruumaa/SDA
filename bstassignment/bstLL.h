@@ -35,6 +35,7 @@ int deleteNode (List * lptr, char *);
 int makeIntBst (intbstree * pBst);
 int insertBst (intbstree * pBst , char *, int);
 void searchBst (intbstree * pBst, char );
+void freeNode (instbstNodePtr );
 void freeBst (intbstree * pBst);
 void inOrder (intbstree * pBst);
 
