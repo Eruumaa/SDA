@@ -14,7 +14,7 @@ void displayList (List * lptr, char huruf) {
     NodePtr current = lptr->head;
     // Kondisi untuk pengecekan jika ada list yang kosong
     if (current == NULL) {
-        printf("%c -- (0)\n", huruf);
+        printf("%c  -- (0)\n", huruf);
         return;
     }
     printf("%c  ", huruf);
@@ -160,7 +160,7 @@ void searchBst (intbstree * pBst, char huruf) {
             return;
         }
     }
-    printf("%c -- (0)\n", hurufAwal);
+    printf("%c  -- (0)\n", hurufAwal);
 }
 
 void inOrder (intbstree * pBst) {
