@@ -83,14 +83,14 @@ void freeList (List * lptr) {
 
 // Fungsi deleteNode untuk melepas node dan menyambungkan kembali ke sisa node lainnya
 int deleteNode (List * lptr, char * kata) {
+    NodePtr current = lptr->head;
+    NodePtr previous = NULL;
+
     // Kondisi untuk mengecek jika ada list yang kosong
     if (lptr->head == NULL) {
         printf("Kata '%s' tidak ditemukan\n", kata);
         return 0;
     }
-    NodePtr current = lptr->head;
-    NodePtr previous = NULL;
-
     // Looping untuk mencari dalam list selama belum sampai NULL
     while (current != NULL) {
         // Kondisi untuk mencocokkan kata di node
@@ -197,12 +197,16 @@ void searchBst (intbstree * pBst, char huruf) {
 
 // Fungsi untuk menelusuri tree secara In-Order (Kiri - Cetak - Kanan)
 void inOrder (intbstree * pBst) {
-    if (pBst->root == NULL) return;
-    instbstNodePtr stack[100];
     int top = -1;
+    instbstNodePtr stack[100];
     instbstNodePtr curr = pBst->root;
 
+    // Jika pohon kosong, langsung keluar
+    if (pBst->root == NULL) return;
+    
+    // Looping selama masih ada simpul yang dikunjungi atau stack belum kosong
     while (curr != NULL || top != -1) {
+        // Telusuri terus cabang kiri sampai NULL
         while (curr != NULL) {
             stack[++top] = curr;
             curr = curr->left;
@@ -216,9 +220,9 @@ void inOrder (intbstree * pBst) {
 // Fungsi rekursif untuk menghapus memori setiap simpul dari bawah ke atas
 void freeNode (instbstNodePtr node) {
     if (node != NULL) {
-        // Telusuri dan bersihkan seluruh cabang kiri terlebih dahulu
+        // Telusuri dan bersihkan seluruh child kiri terlebih dahulu
         freeNode (node->left);
-        // Telusuri dan bersihkan seluruh cabang Kanan
+        // Telusuri dan bersihkan seluruh child Kanan
         freeNode (node->right);
         // Setelah child tree bersih, bersihkan isi Linked List di dalam simpul ini
         freeList (&(node->list));
