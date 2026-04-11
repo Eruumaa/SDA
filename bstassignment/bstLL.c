@@ -14,7 +14,7 @@ void freeList (List * lptr) {
 
 }
 
-int addList (List *lptr, char * kata) {
+int addList (List *lptr, char * kata, int nomor) {
 
 }
 

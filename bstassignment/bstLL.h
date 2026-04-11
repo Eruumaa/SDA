@@ -28,7 +28,7 @@ typedef struct {
 void initList (List * lptr);
 void displayList (List * lptr, char );
 void freeList (List * lptr);
-int addList (List *lptr, char *);
+int addList (List *lptr, char *, int);
 int deleteNode (List * lptr, char *);
 
 // Fungsi BST
