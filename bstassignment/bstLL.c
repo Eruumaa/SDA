@@ -25,23 +25,6 @@ void displayList (List * lptr, char kata) {
     printf("null\n");
 }
 
-void freeList (List * lptr) {
-        NodePtr next=lptr->head;
-    NodePtr current=next;
-    while (current != NULL) {
-        next = current->next;
-        // Penghapusan pertama yaitu menghapus isi dalam node
-        free(current->kata);
-        // Penghapusan kedua yaitu menghapus node
-        free(current);
-        // Pindah ke node selanjutnya
-        current = next;
-    }
-    // Mereset metadata pada list
-    lptr->head = NULL;
-    lptr->size = 0;
-}
-
 int addList (List *lptr, char * kata, int nomor) {
     NodePtr new;
 
@@ -56,6 +39,7 @@ int addList (List *lptr, char * kata, int nomor) {
         return 0;
     }
     strcpy (new->kata, kata);
+    new->nomor = nomor;
     new->next = lptr->head;
     lptr->head = new;
     lptr->size++;
@@ -122,26 +106,32 @@ int insertBst (intbstree * pBST , char * kata, int nomor) {
     instbstNodePtr current, previous, newNode;
     previous = NULL;
     current = pBST->root;
+    char hurufAwal = tolower(kata[0]);
 
     while(current != NULL) {
         previous = current;
-        if (kata < current->kata)
+        if (hurufAwal < current->kata)
             current = current->left;
-        else if (kata > current->kata)
+        else if (hurufAwal > current->kata)
             current = current->right;
-        else
+        else {
+            addList(&(current->list), kata, nomor);
             return EXIT_SUCCESS; // Abaikan duplikat
+        }
     }
 
     newNode = (instbstNodePtr) malloc(sizeof(intbstNode));
     if (newNode == NULL) return EXIT_FAILURE;
 
-    newNode->kata = kata;
+    newNode->kata = hurufAwal;
     newNode->left = newNode->right = NULL;
+
+    initList(&(newNode->list));
+    addList(&(newNode->list), kata, nomor);
 
     (pBST->size)++;
     if (previous == NULL) pBST->root = newNode;
-    else if (kata < previous->kata) previous->left = newNode;
+    else if (hurufAwal < previous->kata) previous->left = newNode;
     else previous->right = newNode;
 
     return EXIT_SUCCESS;
@@ -159,7 +149,7 @@ void inOrder (intbstree * pBst) {
             curr = curr->left;
         }
         curr = stack[top--];
-        printf("%d ", curr->kata);
+        printf("%c\n%d\n", curr->kata, curr->list.size);
         curr = curr->right;
     }
     printf("\n");
