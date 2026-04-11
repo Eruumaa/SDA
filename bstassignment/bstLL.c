@@ -26,7 +26,7 @@ void displayList (List * lptr, char huruf) {
         count++;
 
         if (current != NULL && count < 5) {
-            printf (",");
+            printf (", ");
         }
     }
     printf(" (%d)\n", lptr->size);
