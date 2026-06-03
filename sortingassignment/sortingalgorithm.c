@@ -74,6 +74,7 @@ Sortstats insertionSortInt (int arr[], int n) {
 }
 
 // Merge Sort
+// Merge Integer
 void mergeint (int arr[], int left, int right, Sortstats *stats) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -122,6 +123,7 @@ void mergeint (int arr[], int left, int right, Sortstats *stats) {
     }
 }
 
+// Merge sort
 Sortstats mergeSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
     clock_t start = clock();
