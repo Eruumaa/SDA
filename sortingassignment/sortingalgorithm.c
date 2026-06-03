@@ -128,15 +128,56 @@ Sortstats mergeSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
     clock_t start = clock();
 
-    mergeint(arr, 0, n-1, &stats);
+    mergeint(arr, 0, n - 1, &stats);
 
     stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
+void partitionInt(int arr[], int low, int high, Sortstats *stats) {
+    if (low < high) {
+        int pivot = arr[low];
+        int i = low - 1;
+        int j = high + 1;
+        int temp;
+
+        while (1) {
+            do {
+                i++;
+                stats->comparison++; 
+            } while (arr[i] < pivot);
+
+            do {
+                j--;
+                stats->comparison++; 
+            } while (arr[j] > pivot);
+
+            if (i >= j) {
+                break; 
+            }
+
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            stats->swap++;
+        }
+        
+        int pi = j; 
+
+        partitionInt(arr, low, pi, stats);
+        partitionInt(arr, pi + 1, high, stats);
+    }
+}
+
 // Quick Sort
 Sortstats quickSortInt (int arr[], int n) {
+    Sortstats stats = {0,0, 0.0};
+    clock_t start = clock();
 
+    partitionInt (arr, 0, n - 1, &stats);
+
+    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
+    return stats;
 }
 
 // Fungsi sorting string untuk problem 2
