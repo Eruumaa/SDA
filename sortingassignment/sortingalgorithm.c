@@ -3,17 +3,15 @@
 
 // Fungsi sorting Integer untuk problem 1
 // Bubble Sort
-Sortstats bubbleSortInt (int arr[], int n) {
-    Sortstats stats = {0,0, 0.0};
-
+void bubbleSortInt (int arr[], int n, Sortstats *stats) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i; j++) {
-            stats.comparison++;
+            stats->comparison++;
             if (arr[j] > arr[j+1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
-                stats.swap++;
+                stats->swap++;
             }
         }
     }
@@ -21,13 +19,11 @@ Sortstats bubbleSortInt (int arr[], int n) {
 }
 
 // Selection Sort
-Sortstats selectionSortInt (int arr[], int n) {
-    Sortstats stats = {0,0, 0.0};
-
+void selectionSortInt (int arr[], int n, Sortstats *stats) {
     for (int i = 0; i < n - 1; i++) {
         int minIdx = i;
         for (int j = i + 1; j < n; j++) {
-            stats.comparison++;
+            stats->comparison++;
             if (arr[j] < arr[minIdx]) {
                 minIdx = j;
             }
@@ -36,25 +32,23 @@ Sortstats selectionSortInt (int arr[], int n) {
             int temp = arr[minIdx];
             arr[minIdx] = arr[i];
             arr[i] = temp;
-            stats.swap++;
+            stats->swap++;
         }
     }
     return stats;
 }
 
 // Insertion Sort
-Sortstats insertionSortInt (int arr[], int n) {
-    Sortstats stats = {0,0, 0.0};
-
+void insertionSortInt (int arr[], int n, Sortstats *stats) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
         
         while (j >= 0) {
-            stats.comparison++;
+            stats->comparison++;
             if (arr[j] > key) {
                 arr[j + 1] = arr[j];
-                stats.swap++;
+                stats->swap++;
                 j = j - 1;
             } else {
                 break;
@@ -66,28 +60,27 @@ Sortstats insertionSortInt (int arr[], int n) {
 }
 
 // Merge Sort
-// Merge Integer
-void mergeint (int arr[], int left, int right, Sortstats *stats) {
+void mergeSortInt(int arr[], int left, int right, Sortstats *stats) {
     if (left < right) {
         int mid = left + (right - left) / 2;
         
-        mergeint (arr, left, mid, stats);
-        mergeint (arr, mid + 1, right, stats);
+        mergeSortInt(arr, left, mid, stats);
+        mergeSortInt(arr, mid + 1, right, stats);
         
         int n1 = mid - left + 1;
         int n2 = right - mid;
         
-        int *leftArr =  (int *)malloc(n1 * sizeof(*leftArr));
-        int *rightArr =  (int *)malloc(n2 * sizeof(*rightArr));
+        int *leftArr = (int *)malloc(n1 * sizeof(*leftArr));
+        int *rightArr = (int *)malloc(n2 * sizeof(*rightArr));
         
         for (int i = 0; i < n1; i++) leftArr[i] = arr[left + i];
-        for (int j = 0; j < n2; j++) rightArr[j] =arr[mid + 1 + j];
+        for (int j = 0; j < n2; j++) rightArr[j] = arr[mid + 1 + j];
         
         int i = 0, j = 0, k = left;
         
         while (i < n1 && j < n2) {
             stats->comparison++; 
-            if (strcmp(leftArr[i], rightArr[j]) <= 0) {
+            if (leftArr[i] <= rightArr[j]) { 
                 arr[k] = leftArr[i];
                 i++;
             } else {
@@ -115,16 +108,8 @@ void mergeint (int arr[], int left, int right, Sortstats *stats) {
     }
 }
 
-// Merge sort
-Sortstats mergeSortInt (int arr[], int n) {
-    Sortstats stats = {0,0, 0.0};
-
-    mergeint(arr, 0, n - 1, &stats);
-
-    return stats;
-}
-
-void partitionInt(int arr[], int low, int high, Sortstats *stats) {
+// Quick Sort
+void quickSortInt (int arr[], int low, int high, Sortstats *stats) {
     if (low < high) {
         int pivot = arr[low];
         int i = low - 1;
@@ -142,9 +127,7 @@ void partitionInt(int arr[], int low, int high, Sortstats *stats) {
                 stats->comparison++; 
             } while (arr[j] > pivot);
 
-            if (i >= j) {
-                break; 
-            }
+            if (i >= j) break; 
 
             temp = arr[i];
             arr[i] = arr[j];
@@ -152,36 +135,26 @@ void partitionInt(int arr[], int low, int high, Sortstats *stats) {
             stats->swap++;
         }
         
-        int pi = j; 
+        int pi = j;
 
-        partitionInt(arr, low, pi, stats);
-        partitionInt(arr, pi + 1, high, stats);
+        quickSortInt (arr, low, pi, stats);
+        quickSortInt (arr, pi + 1, high, stats);
     }
-}
-
-// Quick Sort
-Sortstats quickSortInt (int arr[], int n) {
-    Sortstats stats = {0,0, 0.0};
-
-    partitionInt (arr, 0, n - 1, &stats);
-
-    return stats;
 }
 
 // Fungsi sorting string untuk problem 2
 // Bubble Sort
-Sortstats bubbleSortStr (char arr[][100], int n) {
-    Sortstats stats = {0,0, 0.0};
+void bubbleSortStr (char arr[][100], int n, Sortstats *stats) {
     char temp[100];
 
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i; j++) {
-            stats.comparison++;
+            stats->comparison++;
             if (strcmp(arr[j], arr[j+1]) > 0) {
                 strcpy(temp, arr[j]);
                 strcpy(arr[j], arr[j + 1]);
                 strcpy(arr[j + 1], temp);
-                stats.swap++;
+                stats->swap++;
             }
         }
     }
@@ -189,21 +162,57 @@ Sortstats bubbleSortStr (char arr[][100], int n) {
 }
 
 // Selection Sort
-Sortstats selectionSortStr (char arr[][100], int n) {
+void selectionSortStr (char arr[][100], int n, Sortstats *stats) {
+    char temp[100];
 
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i; j < n; j++) {
+            stats->comparison++;
+            if (strcmp(arr[j], arr[minIdx]) < 0) {
+                minIdx = j;
+            }
+        } 
+        if (minIdx != i) {
+            strcpy (temp, arr[minIdx]);
+            strcpy (arr[minIdx], arr[i]);
+            strcpy (arr[i], temp);
+            stats->swap++;
+        }
+    }
+    return stats;
 }
 
 // Insertion Sort
-Sortstats insertionSortStr (char arr[][100], int n) {
+void insertionSortStr (char arr[][100], int n, Sortstats *stats) {
+    char key[100];
 
+    for (int i = 1; i < n; i++) {
+        strcpy (key, arr[i]);
+        int j = i - 1;
+
+        while (j >= 0) {
+            stats->comparison++;
+            if (strcmp(arr[j], key) > 0) {
+                strcpy(arr[j + 1], arr[j]);
+                stats->swap++;
+                j = j - 1;
+            } else {
+                break;
+            }
+        }
+        strcpy(arr[j + 1], key);
+    }
+    return stats;
 }
 
-void mergeStr (char arr[][100], int left, int right, Sortstats *stats) {
+// Merge Sort 
+void mergeSortStr (char arr[][100], int left, int right, Sortstats *stats) {
     if (left < right) {
         int mid = left + (right - left) / 2;
         
-        mergeStr (arr, left, mid, stats);
-        mergeStr (arr, mid + 1, right, stats);
+        mergeSortStr (arr, left, mid, stats);
+        mergeSortStr (arr, mid + 1, right, stats);
         
         int n1 = mid - left + 1;
         int n2 = right - mid;
@@ -246,14 +255,39 @@ void mergeStr (char arr[][100], int left, int right, Sortstats *stats) {
     }
 }
 
-// Merge Sort
-Sortstats mergeSortStr (char arr[][100], int n) {
-    Sortstats stats = {0,0, 0.0};
-
-    mergeStr(arr, 0, n - 1, &stats);
-
-    return stats;
-}
-
 // Quick Sort
-Sortstats quickSortStr (char arr[][100], int n);
+void quickSortStr (char arr[][100], int low, int high, Sortstats *stats) {
+    if (low < high) {
+        char pivot[100];
+        strcpy(pivot, arr[low]); 
+        int i = low - 1;
+        int j = high + 1;
+        char temp[100]; 
+
+        while (1) {
+            do {
+                i++;
+                stats->comparison++; 
+            } while (strcmp(arr[i], pivot) < 0); 
+
+            do {
+                j--;
+                stats->comparison++; 
+            } while (strcmp(arr[j], pivot) > 0); 
+
+            if (i >= j) {
+                break;
+            }
+
+            strcpy(temp, arr[i]);
+            strcpy(arr[i], arr[j]);
+            strcpy(arr[j], temp);
+            stats->swap++;
+        }
+        
+        int pi = j; 
+
+        quickSortStr(arr, low, pi, stats);
+        quickSortStr(arr, pi + 1, high, stats);
+    }
+}
