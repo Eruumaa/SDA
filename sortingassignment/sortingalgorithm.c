@@ -1,4 +1,6 @@
 #include "sortingalgorithm.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 // Fungsi sorting Integer untuk problem 1
@@ -15,7 +17,6 @@ void bubbleSortInt (int arr[], int n, Sortstats *stats) {
             }
         }
     }
-    return stats;
 }
 
 // Selection Sort
@@ -35,7 +36,6 @@ void selectionSortInt (int arr[], int n, Sortstats *stats) {
             stats->swap++;
         }
     }
-    return stats;
 }
 
 // Insertion Sort
@@ -56,7 +56,6 @@ void insertionSortInt (int arr[], int n, Sortstats *stats) {
         }
         arr[j + 1] = key;
     }
-    return stats;
 }
 
 // Merge Sort
@@ -72,6 +71,13 @@ void mergeSortInt(int arr[], int left, int right, Sortstats *stats) {
         
         int *leftArr = (int *)malloc(n1 * sizeof(*leftArr));
         int *rightArr = (int *)malloc(n2 * sizeof(*rightArr));
+
+        if (leftArr == NULL || rightArr == NULL) {
+            printf("\nERROR: Kehabisan memori saat Merge\n");
+            if (leftArr) free(leftArr);
+            if (rightArr) free(rightArr);
+            return;
+        }
         
         for (int i = 0; i < n1; i++) leftArr[i] = arr[left + i];
         for (int j = 0; j < n2; j++) rightArr[j] = arr[mid + 1 + j];
@@ -148,7 +154,7 @@ void bubbleSortStr (char arr[][100], int n, Sortstats *stats) {
     char temp[100];
 
     for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i; j++) {
+        for (int j = 0; j < n - 1; j++) {
             stats->comparison++;
             if (strcmp(arr[j], arr[j+1]) > 0) {
                 strcpy(temp, arr[j]);
@@ -158,7 +164,6 @@ void bubbleSortStr (char arr[][100], int n, Sortstats *stats) {
             }
         }
     }
-    return stats;
 }
 
 // Selection Sort
@@ -180,7 +185,6 @@ void selectionSortStr (char arr[][100], int n, Sortstats *stats) {
             stats->swap++;
         }
     }
-    return stats;
 }
 
 // Insertion Sort
@@ -203,7 +207,6 @@ void insertionSortStr (char arr[][100], int n, Sortstats *stats) {
         }
         strcpy(arr[j + 1], key);
     }
-    return stats;
 }
 
 // Merge Sort 
