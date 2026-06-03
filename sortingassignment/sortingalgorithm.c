@@ -1,13 +1,10 @@
 #include "sortingalgorithm.h"
-#include <time.h>
-#include <stdlib.h>
 #include <string.h>
 
 // Fungsi sorting Integer untuk problem 1
 // Bubble Sort
 Sortstats bubbleSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
 
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i; j++) {
@@ -20,14 +17,12 @@ Sortstats bubbleSortInt (int arr[], int n) {
             }
         }
     }
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
 // Selection Sort
 Sortstats selectionSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
 
     for (int i = 0; i < n - 1; i++) {
         int minIdx = i;
@@ -44,14 +39,12 @@ Sortstats selectionSortInt (int arr[], int n) {
             stats.swap++;
         }
     }
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
 // Insertion Sort
 Sortstats insertionSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
 
     for (int i = 1; i < n; i++) {
         int key = arr[i];
@@ -69,7 +62,6 @@ Sortstats insertionSortInt (int arr[], int n) {
         }
         arr[j + 1] = key;
     }
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
@@ -126,11 +118,9 @@ void mergeint (int arr[], int left, int right, Sortstats *stats) {
 // Merge sort
 Sortstats mergeSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
 
     mergeint(arr, 0, n - 1, &stats);
 
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
@@ -172,18 +162,30 @@ void partitionInt(int arr[], int low, int high, Sortstats *stats) {
 // Quick Sort
 Sortstats quickSortInt (int arr[], int n) {
     Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
 
     partitionInt (arr, 0, n - 1, &stats);
 
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
 // Fungsi sorting string untuk problem 2
 // Bubble Sort
 Sortstats bubbleSortStr (char arr[][100], int n) {
+    Sortstats stats = {0,0, 0.0};
+    char temp[100];
 
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i; j++) {
+            stats.comparison++;
+            if (strcmp(arr[j], arr[j+1]) > 0) {
+                strcpy(temp, arr[j]);
+                strcpy(arr[j], arr[j + 1]);
+                strcpy(arr[j + 1], temp);
+                stats.swap++;
+            }
+        }
+    }
+    return stats;
 }
 
 // Selection Sort
@@ -246,12 +248,10 @@ void mergeStr (char arr[][100], int left, int right, Sortstats *stats) {
 
 // Merge Sort
 Sortstats mergeSortStr (char arr[][100], int n) {
-        Sortstats stats = {0,0, 0.0};
-    clock_t start = clock();
+    Sortstats stats = {0,0, 0.0};
 
     mergeStr(arr, 0, n - 1, &stats);
 
-    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
     return stats;
 }
 
