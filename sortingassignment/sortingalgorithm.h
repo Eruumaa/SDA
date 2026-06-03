@@ -5,15 +5,15 @@ typedef struct {
 } Sortstats;
 
 // Fungsi sorting integer untuk problem 1
-Sortstats bubbleSortInt (int arr[], int n);
-Sortstats selectionSortInt (int arr[], int n);
-Sortstats insertionSortInt (int arr[], int n);
-Sortstats mergeSortInt (int arr[], int n);
-Sortstats quickSortInt (int arr[], int n);
+Sortstats bubbleSortInt (int arr[], int );
+Sortstats selectionSortInt (int arr[], int );
+Sortstats insertionSortInt (int arr[], int );
+Sortstats mergeSortInt (int arr[], int );
+Sortstats quickSortInt (int arr[], int );
 
 // Fungsi sorting string untuk problem 2
-Sortstats bubbleSortStr (char arr[][100], int n);
-Sortstats selectionSortStr (char arr[][100], int n);
-Sortstats insertionSortStr (char arr[][100], int n);
-Sortstats mergeSortStr (char arr[][100], int n);
-Sortstats quickSortStr (char arr[][100], int n);
+Sortstats bubbleSortStr (char arr[][100], int );
+Sortstats selectionSortStr (char arr[][100], int );
+Sortstats insertionSortStr (char arr[][100], int );
+Sortstats mergeSortStr (char arr[][100], int );
+Sortstats quickSortStr (char arr[][100], int );
