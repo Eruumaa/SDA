@@ -1,9 +1,9 @@
 #define __USE_MINGW_ANSI_STDIO 1
 
+#include "sortingalgorithm.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "sortingalgorithm.h"
 
 // Fungsi untuk duplikasi data
 void copyArray(int source[], int dest[], int n) {
