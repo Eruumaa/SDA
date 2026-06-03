@@ -26,7 +26,26 @@ Sortstats bubbleSortInt (int arr[], int n) {
 
 // Selection Sort
 Sortstats selectionSortInt (int arr[], int n) {
+    Sortstats stats = {0,0, 0.0};
+    clock_t start = clock();
 
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            stats.comparison++;
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        if (minIdx != i) {
+            int temp = arr[minIdx];
+            arr[minIdx] = arr[i];
+            arr[i] = temp;
+            stats.swap++;
+        }
+    }
+    stats.timeTaken = ((double)(clock() - start)) / CLOCKS_PER_SEC;
+    return stats;
 }
 
 // Insertion Sort
