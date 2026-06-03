@@ -27,39 +27,38 @@ void printArray(int arr[], int n) {
 
 int main() {
     int n, choice;
-    int *original_arr = NULL;
-    int *temp_arr = NULL;
+    int *originalArr = NULL;
+    int *tempArr = NULL;
     
     srand(time(NULL));
 
-    // Looping pengecekan n pertama kali
+    // Input bilangan dengan jumlah minimum > 1 dan maksimum < 5000000
     while (1) {
         printf("Masukkan Jumlah Bilangan (n): ");
         if (scanf("%d", &n) != 1) {
             printf("Input tidak valid! Input hanya boleh angka.\n");
-            while (getchar() != '\n'); // bersihkan memori keyboard
+            while (getchar() != '\n');
         } else if (n <= 1 || n > 5000000) {
             printf("Error: n harus > 1 dan <= 5000000.\n");
         } else {
-            break; // Input aman, keluar dari loop
+            break; 
         }
     }
 
-    original_arr = (int*)malloc(n * sizeof(int));
-    temp_arr = (int*)malloc(n * sizeof(int));
+    originalArr = (int*)malloc(n * sizeof(int));
+    tempArr = (int*)malloc(n * sizeof(int));
     
-    if (original_arr == NULL || temp_arr == NULL) {
+    if (originalArr == NULL || tempArr == NULL) {
         printf("Gagal mengalokasikan memori!\n");
         return 1;
     }
 
-    // Acak data awal
     for (int i = 0; i < n; i++) {
-        original_arr[i] = rand();
+        originalArr[i] = rand();
     }
     printf("Random data dalam array selesai\n");
 
-    // Loop Menu Utama
+    // Menu program 1-7
     while (1) {
         printf("\nPilihan:\n");
         printf("1) Mengurutkan data dengan INSERTION SORT dan menampilkan hasil\n");
@@ -86,19 +85,19 @@ int main() {
             case 3:
             case 4:
             case 5:
-                copyArray(original_arr, temp_arr, n);
+                copyArray(originalArr, tempArr, n);
                 printf("Sedang memproses...\n");
 
                 start_time = clock();
-                if (choice == 1) insertionSortInt(temp_arr, n, &stats);
-                else if (choice == 2) bubbleSortInt(temp_arr, n, &stats);
-                else if (choice == 3) selectionSortInt(temp_arr, n, &stats);
-                else if (choice == 4) mergeSortInt(temp_arr, 0, n - 1, &stats);
-                else if (choice == 5) quickSortInt(temp_arr, 0, n - 1, &stats);
+                if (choice == 1) insertionSortInt(tempArr, n, &stats);
+                else if (choice == 2) bubbleSortInt(tempArr, n, &stats);
+                else if (choice == 3) selectionSortInt(tempArr, n, &stats);
+                else if (choice == 4) mergeSortInt(tempArr, 0, n - 1, &stats);
+                else if (choice == 5) quickSortInt(tempArr, 0, n - 1, &stats);
                 
                 stats.timeTaken = ((double)(clock() - start_time)) / CLOCKS_PER_SEC;
 
-                printArray(temp_arr, n);
+                printArray(tempArr, n);
                 printf("Jumlah perbandingan  : %lld\n", stats.comparison);
                 printf("Jumlah pertukaran    : %lld\n", stats.swap);
                 printf("Waktu yang dibutuhkan: %.6f detik\n", stats.timeTaken);
@@ -117,25 +116,25 @@ int main() {
                     }
                 }
                 
-                free(original_arr);
-                free(temp_arr);
-                original_arr = (int*)malloc(n * sizeof(int));
-                temp_arr = (int*)malloc(n * sizeof(int));
+                free(originalArr);
+                free(tempArr);
+                originalArr = (int*)malloc(n * sizeof(int));
+                tempArr = (int*)malloc(n * sizeof(int));
                 
-                if (original_arr == NULL || temp_arr == NULL) {
+                if (originalArr == NULL || tempArr == NULL) {
                     printf("Gagal mengalokasikan memori saat random ulang!\n");
                     return 1;
                 }
 
                 for (int i = 0; i < n; i++) {
-                    original_arr[i] = rand();
+                    originalArr[i] = rand();
                 }
                 printf("Random ulang data dalam array selesai\n");
                 break;
 
             case 7:
-                free(original_arr);
-                free(temp_arr);
+                free(originalArr);
+                free(tempArr);
                 printf("Program selesai.\n");
                 return 0; // Mematikan program
 
