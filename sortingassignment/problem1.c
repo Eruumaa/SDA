@@ -80,6 +80,7 @@ int main() {
         clock_t start_time;
 
         switch (choice) {
+            // Opsi ke 1 - 5 memproses setiap algoritma sorting dari insertion sampai quick sort
             case 1:
             case 2:
             case 3:
@@ -102,7 +103,7 @@ int main() {
                 printf("Jumlah pertukaran    : %lld\n", stats.swap);
                 printf("Waktu yang dibutuhkan: %.6f detik\n", stats.timeTaken);
                 break;
-
+            // Opsi ke - 6 Memasukkan jumlah bilangan (n) dan  mengacak ulang
             case 6:
                 while (1) {
                     printf("Masukkan Jumlah Bilangan (n): ");
@@ -131,12 +132,12 @@ int main() {
                 }
                 printf("Random ulang data dalam array selesai\n");
                 break;
-
+            // Opsi ke - 7 exit program dengan free memori
             case 7:
                 free(originalArr);
                 free(tempArr);
                 printf("Program selesai.\n");
-                return 0; // Mematikan program
+                return 0;
 
             default:
                 printf("Pilihan tidak valid. Silakan masukkan angka 1 hingga 7.\n");
