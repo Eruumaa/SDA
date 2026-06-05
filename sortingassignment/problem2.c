@@ -6,7 +6,6 @@
 #include <string.h>
 #include <time.h>
 
-
 // Fungsi untuk menduplikasi array string
 void copyArrayStr(char source[][100], char dest[][100], int n) {
     for (int i = 0; i < n; i++) {
@@ -55,6 +54,7 @@ int main() {
 
     printf("Berhasil membaca %d kata dari file %s.\n", n, filename);
 
+    // Memesan memori untuk n banyak kata, di mana setiap kata memiliki batas 100 karakter
     char (*original_arr)[100] = malloc(n * sizeof(*original_arr));
     char (*temp_arr)[100] = malloc(n * sizeof(*temp_arr));
 
@@ -87,9 +87,11 @@ int main() {
             continue; 
         }
 
+        // Variabel untuk menyimpan waktu yang dihitung pada awal sebelum algoritma dimulai
         Sortstats stats = {0, 0, 0.0};
         clock_t start_time;
 
+        // Opsi ke 1 - 5 memproses setiap algoritma sorting dari insertion sampai quick sort
         switch (choice) {
             case 1:
             case 2:
@@ -113,7 +115,7 @@ int main() {
                 printf("Jumlah pertukaran    : %lld\n", stats.swap);
                 printf("Waktu yang dibutuhkan: %.6f detik\n", stats.timeTaken);
                 break;
-
+            // Opsi ke - 6 exit program dengan free memori
             case 6:
                 free(original_arr);
                 free(temp_arr);

@@ -45,14 +45,17 @@ int main() {
         }
     }
 
+    // Memesan memori di Heap untuk mencegah Stack Overflow pada data besar
     originalArr = (int*)malloc(n * sizeof(int));
     tempArr = (int*)malloc(n * sizeof(int));
     
+    // Memastikan alokasi memori berhasil, kalau ram penuh, program berhenti dengan aman.
     if (originalArr == NULL || tempArr == NULL) {
         printf("Gagal mengalokasikan memori!\n");
         return 1;
     }
 
+    // Mengisi array utama dengan angka acak menggunakan rand()
     for (int i = 0; i < n; i++) {
         originalArr[i] = rand();
     }
@@ -76,6 +79,7 @@ int main() {
             continue; 
         }
 
+        // Variabel untuk menyimpan waktu yang dihitung pada awal sebelum algoritma dimulai
         Sortstats stats = {0, 0, 0.0};
         clock_t start_time;
 
@@ -117,6 +121,7 @@ int main() {
                     }
                 }
                 
+                // Memfreekan array bawaan dan aray sementara pada memori
                 free(originalArr);
                 free(tempArr);
                 originalArr = (int*)malloc(n * sizeof(int));

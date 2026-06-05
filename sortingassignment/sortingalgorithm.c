@@ -10,6 +10,7 @@ void bubbleSortInt (int arr[], int n, Sortstats *stats) {
         for (int j = 0; j < n - i; j++) {
             stats->comparison++;
             if (arr[j] > arr[j+1]) {
+                // Swap
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -26,9 +27,11 @@ void selectionSortInt (int arr[], int n, Sortstats *stats) {
         for (int j = i + 1; j < n; j++) {
             stats->comparison++;
             if (arr[j] < arr[minIdx]) {
+                // Perbarui indeks nilai terkecil
                 minIdx = j;
             }
         }
+        // Tukar hanya jika nilai terkecil bukan di posisi aslinya
         if (minIdx != i) {
             int temp = arr[minIdx];
             arr[minIdx] = arr[i];
@@ -43,7 +46,7 @@ void insertionSortInt (int arr[], int n, Sortstats *stats) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
-        
+        // Geser elemen yang lebih besar dari key ke kanan
         while (j >= 0) {
             stats->comparison++;
             if (arr[j] > key) {
@@ -54,6 +57,7 @@ void insertionSortInt (int arr[], int n, Sortstats *stats) {
                 break;
             }
         }
+        // Sisipkan key di posisi yang tepat
         arr[j + 1] = key;
     }
 }
@@ -62,13 +66,14 @@ void insertionSortInt (int arr[], int n, Sortstats *stats) {
 void mergeSortInt(int arr[], int left, int right, Sortstats *stats) {
     if (left < right) {
         int mid = left + (right - left) / 2;
-        
+        // Fungsi rekursif untuk membelah array
         mergeSortInt(arr, left, mid, stats);
         mergeSortInt(arr, mid + 1, right, stats);
         
         int n1 = mid - left + 1;
         int n2 = right - mid;
         
+        // Alokasi memori dinamis untuk subarray sementara
         int *leftArr = (int *)malloc(n1 * sizeof(*leftArr));
         int *rightArr = (int *)malloc(n2 * sizeof(*rightArr));
 
@@ -79,11 +84,13 @@ void mergeSortInt(int arr[], int left, int right, Sortstats *stats) {
             return;
         }
         
+        // Menyalin data ke array sementara
         for (int i = 0; i < n1; i++) leftArr[i] = arr[left + i];
         for (int j = 0; j < n2; j++) rightArr[j] = arr[mid + 1 + j];
         
         int i = 0, j = 0, k = left;
         
+        // Proses merge kembali ke array utama
         while (i < n1 && j < n2) {
             stats->comparison++; 
             if (leftArr[i] <= rightArr[j]) { 
@@ -97,18 +104,21 @@ void mergeSortInt(int arr[], int left, int right, Sortstats *stats) {
             k++;
         }
         
+        // Menyalin sisa elemen di array kiri
         while (i < n1) {
             arr[k] = leftArr[i];
             stats->swap++;
             i++; k++;
         }
         
+        // Menyalin sisa elemen di array kanan
         while (j < n2) {
             arr[k] = rightArr[j];
             stats->swap++;
             j++; k++;
         }
         
+        // Free memori sementara
         free(leftArr);
         free(rightArr);
     }
@@ -135,14 +145,17 @@ void quickSortInt (int arr[], int low, int high, Sortstats *stats) {
 
             if (i >= j) break; 
 
+            // Tukar elemen
             temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
             stats->swap++;
         }
         
+        // Titik potong partisi
         int pi = j;
 
+        // Urutkan bagian kiri dan kanan pivot secara rekursif
         quickSortInt (arr, low, pi, stats);
         quickSortInt (arr, pi + 1, high, stats);
     }

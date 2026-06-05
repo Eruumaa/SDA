@@ -5,15 +5,15 @@ typedef struct {
 } Sortstats;
 
 // Fungsi sorting integer untuk problem 1
-void bubbleSortInt (int arr[], int , Sortstats *stats);
-void selectionSortInt (int arr[], int , Sortstats *stats);
-void insertionSortInt (int arr[], int , Sortstats *stats);
-void mergeSortInt (int arr[], int , int, Sortstats *stats);
-void quickSortInt (int arr[], int , int , Sortstats *stats);
+void bubbleSortInt (int arr[], int , Sortstats *);
+void selectionSortInt (int arr[], int , Sortstats *);
+void insertionSortInt (int arr[], int , Sortstats *);
+void mergeSortInt (int arr[], int , int, Sortstats *);
+void quickSortInt (int arr[], int , int , Sortstats *);
 
 // Fungsi sorting string untuk problem 2
-void bubbleSortStr (char arr[][100], int , Sortstats *stats);
-void selectionSortStr (char arr[][100], int , Sortstats *stats);
-void insertionSortStr (char arr[][100], int , Sortstats *stats);
-void mergeSortStr (char arr[][100], int , int , Sortstats *stats);
-void quickSortStr (char arr[][100], int , int , Sortstats *stats);
+void bubbleSortStr (char arr[][100], int , Sortstats *);
+void selectionSortStr (char arr[][100], int , Sortstats *);
+void insertionSortStr (char arr[][100], int , Sortstats *);
+void mergeSortStr (char arr[][100], int , int , Sortstats *);
+void quickSortStr (char arr[][100], int , int , Sortstats *);
