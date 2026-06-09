@@ -27,11 +27,11 @@ void maxHeapifyStr (char arr[][100], int n, int i, long long *swapCount) {
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
-    if (left < n && strcmp(arr[left], arr[largest] > 0)) {
+    if (left < n && strcmp(arr[left], arr[largest]) > 0) {
         largest = left;
     }
 
-    if (right < n && strcmp(arr[right], arr[largest] > 0)) {
+    if (right < n && strcmp(arr[right], arr[largest]) > 0) {
         largest = right;
     }
 
@@ -73,6 +73,6 @@ void heapSortStr (char arr[][100], int n, long long *swapCount) {
         strcpy(arr[i], temp);
         (*swapCount)++;
 
-        maxHeapifyString(arr, i, 0, swapCount);
+        maxHeapifyStr(arr, i, 0, swapCount);
     }
 }
