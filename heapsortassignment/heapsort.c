@@ -2,7 +2,7 @@
 #include <string.h>
 
 void minHeapify(double arr[], int n, int i, long long *swapCount) {
-    int smallest = 1;
+    int smallest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
