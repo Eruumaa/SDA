@@ -9,18 +9,21 @@
 #define MAX_WORDS 26000
 #define MAX_LEN 100
 
+// Array 2D global untuk menyimpan daftar kata
 char words[MAX_WORDS][MAX_LEN];
 
 int main() {
     int choice;
     int wordCount = 0;
 
+    // Buka file database kata dalam mode read
     FILE *file = fopen("dbterms.txt", "r");
     if (file == NULL) {
         printf("Error: File 'dbterms.txt' tidak ditemukan.\n");
         return 1;
     }
 
+    // Baca kata per kata hingga akhir file (EOF) atau batas array maksimum
     while (fscanf(file, "%99s", words[wordCount]) != EOF && wordCount < MAX_WORDS) {
         wordCount++;
     }
@@ -33,6 +36,7 @@ int main() {
         printf("2) Selesai\n");
         printf("Pilihan anda: ");
         
+        // Validasi input menu agar tidak infinite loop saat menerima karakter huruf
         if (scanf("%d", &choice) != 1) {
             printf("Input harus angka\n");
             while (getchar() != '\n');
@@ -48,6 +52,7 @@ int main() {
             
             double time_spent = (double)(end - start) / CLOCKS_PER_SEC * 1000.0;
 
+            // Simpan hasil sorting alfabet ke teks
             FILE *f = fopen("hasilsortingproblem2.txt", "w");
             for (int i = 0; i < wordCount; i++) {
                 fprintf(f, "%s\n", words[i]);

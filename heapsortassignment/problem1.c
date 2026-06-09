@@ -6,6 +6,7 @@
 #include <time.h>
 #include <string.h>
 
+// Menghasilkan bilangan desimal yang diacak antara 0.0 hingga 1.0
 void randomRealNumb(double *arr, int n) {
     for (int i = 0; i < n; i++) {
         arr[i] = (double) rand() / RAND_MAX;
@@ -19,6 +20,7 @@ int main () {
     double *arr = NULL;
     srand(time(NULL)); 
 
+    // Loop validasi input untuk memastikan n adalah angka dan sesuai batas
     while (1) {
         printf("Masukkan Jumlah Bilangan (n): ");
         if (scanf("%d", &n) != 1) {
@@ -33,6 +35,7 @@ int main () {
         break;
     }
 
+    // Alokasi memori dinamis (heap) untuk mencegah Stack Overflow
     arr = (double *)malloc(n * sizeof(double));
     if (arr == NULL) {
         printf("Gagal mengalokasikan memori.\n");
@@ -48,6 +51,7 @@ int main () {
         printf("3) Selesai\n");
         printf("Pilihan anda: ");
         
+        // Validasi input menu
         if (scanf("%d", &choice) != 1) {
             printf("Input harus angka\n");
             while (getchar() != '\n');
@@ -57,12 +61,14 @@ int main () {
         if (choice == 1) {
             long long swapCount = 0;
             
+            // Catat waktu mulai dan selesai pengurutan
             clock_t start = clock();
             heapSortDesc(arr, n, &swapCount);
             clock_t end = clock();
             
             double time_spent = (double)(end - start) / CLOCKS_PER_SEC;
 
+            // Export hasil array yang sudah terurut ke file eksternal
             FILE *f = fopen("hasilsortingproblem1.txt", "w");
             for (int i = 0; i < n; i++) {
                 fprintf(f, "%f\n", arr[i]);
@@ -101,6 +107,7 @@ int main () {
 
     } while (choice != 3);
 
+    // Mencegah memory leak
     if (arr != NULL) free(arr);
     return 0;
 }
